@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>오늘의 음식 추천</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🎵 맞춤 음식 추천 시스템</h1>
+    </header>
+
+    <div class="tag-container">
+      <h3>태그 선택</h3>
+      <div id="tags-wrapper"></div>
+
+      <div class="price-container">
+        <input type="number" id="user-price" placeholder="예: 10000" min="0" />
+        원 이하
+        <button onclick="filterFoods()">음식 찾기 🔍</button>
+      </div>
+    </div>
+
+    <hr />
+
+    <h2>추천 결과</h2>
+    <div id="food-result"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

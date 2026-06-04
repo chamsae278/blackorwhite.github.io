@@ -1,0 +1,100 @@
+/* style.css */
+body {
+  max-width: 1200px; /* 전체 너비 제한 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 20px;
+  font-family: "Pretendard", sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tag-container {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.tag-label {
+  margin-right: 15px;
+  display: inline-block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.price-container {
+  margin-top: 15px;
+}
+
+/* 6열 정렬 */
+#food-result {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6열 고정 */
+  gap: 15px;
+}
+
+.food-item {
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
+  transition: transform 0.2s; /* 살짝 커지는 효과 */
+}
+
+.food-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.food-item h3 {
+  font-size: 14px;
+  margin: 0 0 10px 0;
+}
+.food-tags {
+  font-size: 11px;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* style.css (기존 내용 아래에 추가하거나 수정) */
+
+.tag-container {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+/* 체크박스 숨기기 */
+.tag-checkbox {
+  display: none;
+}
+
+/* 태그 버튼 디자인 */
+.tag-label {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 20px; /* 둥근 모서리 */
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease; /* 애니메이션 효과 */
+  user-select: none;
+}
+
+/* 선택되었을 때의 스타일 */
+.tag-checkbox:checked + .tag-label {
+  background-color: black;
+  color: white;
+  border-color: black;
+  transform: scale(1.05); /* 클릭 시 살짝 커짐 */
+}
+
+/* 마우스 올렸을 때 살짝 반응 */
+.tag-label:hover {
+  background-color: #eee;
+}
