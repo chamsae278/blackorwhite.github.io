@@ -353,14 +353,38 @@ function filterFoods() {
   const userPriceInput = document.getElementById("user-price").value;
   const userPrice = userPriceInput ? parseInt(userPriceInput) : Infinity;
 
-  // 3. 가격 및 태그 필터링 진행 (AND 조건)
-  let filtered = foodData.filter((food) => {
-    const isPriceMatch = food.minPrice <= userPrice;
-    const isTagMatch = selectedTags.every((tag) => food.tags.includes(tag));
+  // 3. 가격 필터링 및 태그 매칭 개수 계산
+  let filtered = [];
 
-    return isPriceMatch && isTagMatch;
+  foodData.forEach((food) => {
+    // 가격 조건 만족하는지 확인
+    const isPriceMatch = food.minPrice <= userPrice;
+
+    if (isPriceMatch) {
+      if (selectedTags.length === 0) {
+        // 선택된 태그가 없다면 매칭 개수를 0으로 두고 모두 포함
+        food.matchCount = 0;
+        filtered.push(food);
+      } else {
+        // 음식 태그 중 사용자가 선택한 태그와 겹치는 개수 계산 (OR 조건 기반)
+        const matchCount = food.tags.filter((tag) =>
+          selectedTags.includes(tag),
+        ).length;
+
+        // 하나라도 겹치는 태그가 있다면 배열에 추가
+        if (matchCount > 0) {
+          food.matchCount = matchCount; // 정렬을 위해 매칭된 개수를 객체에 임시 저장
+          filtered.push(food);
+        }
+      }
+    }
   });
 
-  // 4. 최종 결과 화면에 뿌리기
+  // 4. 태그가 많이 중복될수록 앞쪽에 도출되도록 정렬 (내림차순)
+  if (selectedTags.length > 0) {
+    filtered.sort((a, b) => b.matchCount - a.matchCount);
+  }
+
+  // 5. 최종 결과 화면에 뿌리기
   displayFoods(filtered);
 }
